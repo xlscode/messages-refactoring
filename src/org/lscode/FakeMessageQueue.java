@@ -1,10 +1,6 @@
 package org.lscode;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class FakeMessageQueue implements Iterator<String>{
