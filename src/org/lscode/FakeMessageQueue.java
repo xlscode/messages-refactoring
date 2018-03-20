@@ -30,7 +30,9 @@ public class FakeMessageQueue implements Iterator<String>{
 
     @Override
     public String next() {
-        return constructMessage(generateMsgType());
+        MsgType mType = generateMsgType();
+        System.out.println(">> generated message: " + mType.name());
+        return constructMessage(mType);
     }
 
     private MsgType generateMsgType() {
