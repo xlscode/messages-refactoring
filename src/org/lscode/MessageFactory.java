@@ -9,15 +9,16 @@ public class MessageFactory {
         Message produceMsg(String[] messageFields);
     }
 
-    public Message getMessage(String[] messageFields){
-        Message message;
+    private Map<String, MsgProducer> factoryMap = new HashMap<>();
 
-        Map<String, MsgProducer> factoryMap = new HashMap<>();
-
+    public MessageFactory(){
         factoryMap.put("AST", new MsgProducer(){ public Message produceMsg(String[] messageFields){ return getASTMessage(messageFields);}} );
         factoryMap.put("ASL", new MsgProducer(){ public Message produceMsg(String[] messageFields){ return getASLMessage(messageFields);}} );
         factoryMap.put("AMG", new MsgProducer(){ public Message produceMsg(String[] messageFields){ return getAMGMessage(messageFields);}} );
         factoryMap.put("OMG", new MsgProducer(){ public Message produceMsg(String[] messageFields){ return getOMGMessage(messageFields);}} );
+    }
+
+    public Message getMessage(String[] messageFields){
 
         if (factoryMap.containsKey(messageFields[Message.MsgFld.HEADER.ordinal()])){
             return factoryMap.get(messageFields[Message.MsgFld.HEADER.ordinal()]).produceMsg(messageFields);
@@ -25,7 +26,6 @@ public class MessageFactory {
         else{
             return getDefMessage(messageFields);
         }
-
     }
 
     private Message getASTMessage(String[] messageFields){
