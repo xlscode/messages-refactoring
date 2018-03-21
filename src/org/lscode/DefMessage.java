@@ -8,6 +8,6 @@ public class DefMessage  extends Message{
 
     @Override
     public void process() {
-        System.out.println("default block a message");
+        System.out.println("default block message");
     }
 }
