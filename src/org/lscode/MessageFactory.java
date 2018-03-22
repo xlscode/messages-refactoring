@@ -12,10 +12,10 @@ public class MessageFactory {
     private Map<String, MsgProducer> factoryMap = new HashMap<>();
 
     public MessageFactory(){
-        factoryMap.put("AST", new MsgProducer(){ public Message produceMsg(String[] messageFields){ return getASTMessage(messageFields);}} );
-        factoryMap.put("ASL", new MsgProducer(){ public Message produceMsg(String[] messageFields){ return getASLMessage(messageFields);}} );
-        factoryMap.put("AMG", new MsgProducer(){ public Message produceMsg(String[] messageFields){ return getAMGMessage(messageFields);}} );
-        factoryMap.put("OMG", new MsgProducer(){ public Message produceMsg(String[] messageFields){ return getOMGMessage(messageFields);}} );
+        factoryMap.put("AST", mf -> getASTMessage(mf) );
+        factoryMap.put("ASL", mf -> getASLMessage(mf) );
+        factoryMap.put("AMG", mf -> getAMGMessage(mf) );
+        factoryMap.put("OMG", mf -> getOMGMessage(mf) );
     }
 
     public Message getMessage(String[] messageFields){
